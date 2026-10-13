@@ -15,13 +15,20 @@ PRESENT_PSC = new ByteString("FF 20 00 00 03 FF FF FF", HEX);
 card.plainApdu(PRESENT_PSC);
 print("Resultado ingreso PIN: " + card.SW.toString(HEX));
 
+// Obtención de fecha actual para campo fecha
+var f = new Date();
+
+var dia = f.getDate(); if(dia < 10){dia = "0".concat(dia)};
+var mes = f.getMonth() + 1; anno = f.getFullYear(); if(mes < 10){mes = "0".concat(mes)};
+var anno = f.getFullYear(); if(anno < 10){anno = "0".concat(anno)};
+
 WRITE_CARD_20h = new ByteString("FF D0 00 20 10", HEX); DATA_20h = new ByteString(" DATOS  USUARIO ", ASCII);
 WRITE_CARD_30h = new ByteString("FF D0 00 30 10", HEX); DATA_30h = new ByteString("---PERSONALES---", ASCII);
 WRITE_CARD_40h = new ByteString("FF D0 00 40 10", HEX); DATA_40h = new ByteString("ID:211026       ", ASCII);
 WRITE_CARD_50h = new ByteString("FF D0 00 50 10", HEX); DATA_50h = new ByteString("SERGIO          ", ASCII);
 WRITE_CARD_60h = new ByteString("FF D0 00 60 10", HEX); DATA_60h = new ByteString("PASTOR          ", ASCII);
 WRITE_CARD_70h = new ByteString("FF D0 00 70 10", HEX); DATA_60h = new ByteString("MESAS           ", ASCII);
-WRITE_CARD_80h = new ByteString("FF D0 00 80 10", HEX); DATA_70h = new ByteString("DESDE:21/10/2026", ASCII); // Cambiar para que ponga la fecha actual de creación
+WRITE_CARD_80h = new ByteString("FF D0 00 80 10", HEX); DATA_70h = new ByteString("DESDE:" + dia + "/" + mes + "/" + anno, ASCII);
 WRITE_CARD_90h = new ByteString("FF D0 00 90 10", HEX); DATA_80h = new ByteString("----MONEDERO----", ASCII);
 WRITE_CARD_A0h = new ByteString("FF D0 00 A0 10", HEX); DATA_90h = new ByteString("SALDO:50$       ", ASCII); // Bono de bienvenida de 50$
 WRITE_CARD_B0h = new ByteString("FF D0 00 B0 10", HEX); DATA_A0h = new ByteString("DESCUENTO:0$    ", ASCII);
