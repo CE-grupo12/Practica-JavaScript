@@ -9,7 +9,7 @@ print("RESET CARD exitoso");
 
 SELECT_CARD = new ByteString("FF A4 00 00 01 06", HEX);
 card.plainApdu(SELECT_CARD);
-print("Lectura de tarjeta: " + card.SW.toString(HEX)");
+print("Lectura de tarjeta: " + card.SW.toString(HEX));
 
 READ_DATA = new ByteString("FF B0 00 20 B0", HEX);
 data = card.plainApdu(READ_DATA);
@@ -24,8 +24,9 @@ var myKey = new ByteString("00112233445566778899AABBCCDDEEFFFFEEDDCCBBAA99887766
 var myAESKey = new Key();
 myAESKey.setComponent(Key.AES, myKey);
 
-var myAESCypher = new Crypto("AES_CBC");
-var signature = myAESCypher.encrypt(myAESKey, Crypto.AES_CBC, dataHash);
+// AES-CBC necesita un IV de 16 bytes (tiene que ser el mismo que al verificar)
+var IV = new ByteString("00000000000000000000000000000000", HEX);
+var signature = crypto.encrypt(myAESKey, Crypto.AES_CBC, dataHash, IV);
 
 // ESCRITURA DE FIRMA DESDE E0h
 PRESENT_PSC = new ByteString("FF 20 00 00 03 FF FF FF", HEX);
@@ -42,4 +43,3 @@ print("Resultado escritura firma: " + card.SW.toString(HEX));
 //No se si hacer esto o en el resto de scripts hacer card.reset manteniendo la tarjeta dentro y ya
 //card.close();
 //print("Card closed");
-
