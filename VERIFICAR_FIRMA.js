@@ -28,8 +28,9 @@ var myKey = new ByteString("00112233445566778899AABBCCDDEEFFFFEEDDCCBBAA99887766
 var myAESKey = new Key();
 myAESKey.setComponent(Key.AES, myKey);
 
-var myAESCypher = new Crypto("AES_CBC");
-hashSignature = myAESCypher.decrypt(myAESKey, Crypto.AES_CBC, signature);
+// AES-CBC necesita un IV de 16 bytes (tiene que ser el mismo que al firmar)
+var IV = new ByteString("00000000000000000000000000000000", HEX);
+hashSignature = crypto.decrypt(myAESKey, Crypto.AES_CBC, signature, IV);
 
 // Comparación de datos con firma
 if (dataHash.equals(hashSignature)) {
