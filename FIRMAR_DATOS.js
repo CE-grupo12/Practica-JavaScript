@@ -37,7 +37,7 @@ WRITE_SIGNATURE_CARD = new ByteString("FF D0 00 E0 20", HEX);
 
 // No podemos concatenarlo como en ALTA_USER porque "signature" es ya un ByteString binario
 var fullAPDU = WRITE_SIGNATURE_CARD.concat(signature);
-card.plainApdu(apduCompleta);
+card.plainApdu(fullAPDU);
 print("Resultado escritura firma: " + card.SW.toString(HEX));
 
 //No se si hacer esto o en el resto de scripts hacer card.reset manteniendo la tarjeta dentro y ya
