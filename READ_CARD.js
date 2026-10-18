@@ -18,18 +18,18 @@ while(!lectura && intentos < 20) // Maximo 20 intentos hasta rendirse
 		lectura = true;
 		print("Lectura de tarjeta: " + card.SW.toString(HEX));
 		
-		const READ_CARD_NOMBRE = new ByteString("FF B0 00 57 09", HEX);
-		const READ_CARD_SALDO = new ByteString("FF B0 00 96 0A", HEX);   // Estudiar como manejar cuando dinero es menor o mayor
-		const READ_CARD_DESCUENTO = new ByteString("FF B0 00 AA 06", HEX)// que 100$ para no leer el padding. El inicio de lectura no cambia
+		var READ_CARD_NOMBRE = new ByteString("FF B0 00 57 09", HEX);
+		var READ_CARD_SALDO = new ByteString("FF B0 00 A6 0A", HEX);   // Estudiar como manejar cuando dinero es menor o mayor
+		var READ_CARD_DESCUENTO = new ByteString("FF B0 00 BA 06", HEX);// que 100$ para no leer el padding. El inicio de lectura no cambia
 		
-		const response_nombre = card.plainApdu(READ_CARD_NOMBRE);
-		const estado_nombre = card.SW.toString(HEX);
+		var response_nombre = card.plainApdu(READ_CARD_NOMBRE);
+		var estado_nombre = card.SW.toString(HEX);
 		
-		const response_saldo = card.plainApdu(READ_CARD_SALDO);
-		const estado_saldo = card.SW.toString(HEX);
+		var response_saldo = card.plainApdu(READ_CARD_SALDO);
+		var estado_saldo = card.SW.toString(HEX);
 		
-		const response_descuento = card.plainApdu(READ_CARD_DESCUENTO);
-		const estado_descuento = card.SW.toString(HEX);
+		var response_descuento = card.plainApdu(READ_CARD_DESCUENTO);
+		var estado_descuento = card.SW.toString(HEX);
 		
 		if (estado_nombre === estado_saldo && estado_saldo === estado_descuento) { // Todos son 90 00
 			print("Lectura de datos exitosa: " + estado_descuento);
