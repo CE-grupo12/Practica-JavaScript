@@ -18,7 +18,7 @@ while(!lectura && intentos < 20) // Maximo 20 intentos hasta rendirse
 		lectura = true;
 		print("Lectura de tarjeta: " + card.SW.toString(HEX));
 		
-		var READ_CARD_NOMBRE = new ByteString("FF B0 00 57 09", HEX);
+		var READ_CARD_NOMBRE = new ByteString("FF B0 00 50 0F", HEX);
 		var READ_CARD_SALDO = new ByteString("FF B0 00 A6 0A", HEX);   // Estudiar como manejar cuando dinero es menor o mayor
 		var READ_CARD_DESCUENTO = new ByteString("FF B0 00 BA 06", HEX);// que 100$ para no leer el padding. El inicio de lectura no cambia
 		

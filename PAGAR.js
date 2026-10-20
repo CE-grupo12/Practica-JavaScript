@@ -8,6 +8,7 @@ print("**********************************************************");
 var descuento = true;               // si es true gasta todo el descuento acumulado posible
 var idProfesor = "P002";            // Profesor seleccionado (ver db.js)
 var idAsignatura = 3;               // Asignatura de la que se paga la clase (ver db.js)
+var numHoras = 2;
 
 var PORC_ACUMULA = 0.05;            // % de lo pagado que se acumula como descuento
 var MAX_DESCUENTO = 99.99;
@@ -29,7 +30,7 @@ if (!asignatura) throw new Error("No existe la asignatura " + idAsignatura);
 
 if (profesor.asignaturas.indexOf(idAsignatura) == -1) throw new Error(profesor.nombre + " no imparte " + asignatura.nombre);
 
-var precio = profesor.precio;
+var precio = profesor.precio * numHoras;
 
 // Conexion y lectura:
 card = new Card();

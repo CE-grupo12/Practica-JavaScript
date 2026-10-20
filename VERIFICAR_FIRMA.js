@@ -34,7 +34,7 @@ hashSignature = crypto.decrypt(myAESKey, Crypto.AES_CBC, signature, IV);
 
 // Comparación de datos con firma
 if (dataHash.equals(hashSignature)) {
-    print("\nInformación de la tarjeta legítima: No se han detectado modificaciones");
+    print("\nInformacion de la tarjeta legitima: No se han detectado modificaciones");
 } else {
     print("\nTarjeta ilegalmente alterada: Se han detectado modificaciones anormales");
 }
