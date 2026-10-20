@@ -21,8 +21,6 @@ Clase con la que, al ejecutar, permite al usuario ver la información relevante 
 - **Saldo**: Los fondos actuales que tiene el usuario en su cuenta. Es uno de los campos que se usarán al realizar los pagos e ingresos. Se ha decidido representarlo en dólares ($).
 - **Descuento**: El valor (también representado en dólares) del descuento acumulado por el usuario tras realizar pagos. Se ha decidido que este valor no pueda superar los 99.99$ y que con cada compra, se acumula un descuento del 5% de lo que ha costado.
 
-Este es el script que se usa para dar la bienvenida a un usuario, por lo que es el único que requiere meter la tarjeta en el lector explicitamente en vez de hacer un "reset" como en el resto de clases.
-
 **ALTA_USER.JS**
 
 Claso cuyo propósito es dar de alta a un usuario usando la información de cuenta que este proporcione. Se deben rellenar los siguientes campos:
